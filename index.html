@@ -7,17 +7,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
+
+/* ── RESET & BASE */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
   --navy:        #0B1C38;
   --teal:        #0E8A98;
   --teal-hover:  #0C7582;
-  --blue:        #3B82F6;
-  --green:       #10B981;
-  --amber:       #F59E0B;
   --white:       #FFFFFF;
-  --body:        rgba(255,255,255,0.72);
   --secondary:   rgba(255,255,255,0.52);
   --dim:         rgba(255,255,255,0.30);
   --card-bg:     rgba(255,255,255,0.055);
@@ -36,45 +34,91 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  top: -160px; left: 50%;
-  transform: translateX(-50%);
-  width: 1100px; height: 680px;
-  background: radial-gradient(ellipse at center top, rgba(14,138,152,0.09) 0%, transparent 65%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.page {
-  position: relative;
-  z-index: 1;
-  max-width: 960px;
+/* ── CONTAINER */
+.container {
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 64px 28px 96px;
+  padding: 0 48px;
 }
 
-/* ── TWO-COLUMN LAYOUT on desktop */
-.layout {
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 72px;
-  align-items: start;
+/* ── NAV */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: rgba(11,28,56,0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
-@media (max-width: 768px) {
-  .layout { display: block; }
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 62px;
 }
 
-@media (min-width: 769px) {
-  .page { padding: 88px 48px 112px; }
-  .action-col { position: sticky; top: 56px; }
-  .rule { display: none; }
-  .action-col .cta { width: 100%; justify-content: center; }
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-/* ── EYEBROW — page identifier, clearly visible */
+.nav-brand {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+
+.nav-badge {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.34);
+  padding: 3px 9px;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 20px;
+  line-height: 1;
+}
+
+.nav-link {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #2DD4BF;
+  text-decoration: none;
+  padding: 9px 18px;
+  border: 1px solid rgba(45,212,191,0.28);
+  border-radius: 7px;
+  letter-spacing: -0.01em;
+  transition: background 0.17s, border-color 0.17s;
+}
+
+.nav-link:hover {
+  background: rgba(45,212,191,0.09);
+  border-color: rgba(45,212,191,0.50);
+}
+
+/* ── HERO */
+.hero {
+  padding: 104px 0 92px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -120px; left: 50%;
+  transform: translateX(-50%);
+  width: 1000px; height: 680px;
+  background: radial-gradient(ellipse at center top, rgba(14,138,152,0.12) 0%, transparent 62%);
+  pointer-events: none;
+}
+
 .eyebrow {
   display: inline-block;
   font-size: 11px;
@@ -82,79 +126,37 @@ body::before {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #5EEAD4;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
   text-shadow: 0 0 20px rgba(94,234,212,0.35);
 }
 
-/* ── HERO */
 h1 {
   font-family: 'DM Serif Display', serif;
-  font-size: clamp(34px, 5vw, 56px);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
+  font-size: clamp(36px, 5vw, 62px);
+  line-height: 1.07;
+  letter-spacing: -0.025em;
   color: var(--white);
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* teal accent on brand name */
 h1 .brand { color: #2DD4BF; }
 
-.support {
-  font-size: clamp(14px, 1.5vw, 16px);
+.hero-sub {
+  font-size: clamp(15px, 1.6vw, 17px);
   font-weight: 300;
-  color: rgba(255,255,255,0.62);
-  line-height: 1.65;
-  margin-bottom: 40px;
+  color: rgba(255,255,255,0.58);
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 0 auto 32px;
 }
 
-.support-sub {
-  margin-top: -28px;
-  color: rgba(255,255,255,0.40);
-  font-size: 13.5px;
-}
-
-/* ── THREE BLOCKS */
-.blocks {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 2px;
-  margin-bottom: 44px;
-}
-
-.block {
-  padding: 22px 18px 20px;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-bottom: 2.5px solid;
-}
-
-.block:first-child  { border-radius: 10px 0 0 10px; border-bottom-color: #10B981; }
-.block:nth-child(2) { border-bottom-color: #F59E0B; }
-.block:last-child   { border-radius: 0 10px 10px 0; border-bottom-color: #3B82F6; }
-
-.block-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  margin-bottom: 9px;
-}
-
-.block:first-child  .block-label { color: #6EE7B7; }
-.block:nth-child(2) .block-label { color: #FCD34D; }
-.block:last-child   .block-label { color: #93C5FD; }
-
-.block p {
-  font-size: clamp(12px, 1.2vw, 14px);
-  font-weight: 300;
-  color: rgba(255,255,255,0.72);
-  line-height: 1.6;
-}
-
-/* ── PROOF CHIPS */
 .chips {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
   margin-bottom: 36px;
 }
@@ -188,97 +190,165 @@ h1 .brand { color: #2DD4BF; }
 
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.3; transform: scale(0.65); }
+  50%       { opacity: 0.3; transform: scale(0.65); }
 }
 
-/* ── RULE */
-.rule {
-  border: none;
-  border-top: 1px solid rgba(255,255,255,0.07);
-  margin: 0 0 28px;
-}
-
-/* ── INVITE */
-.invite {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--dim);
-  margin-bottom: 22px;
-  line-height: 1.6;
-}
-
-/* ── CTA */
-.cta-row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.cta {
+.hero-cta {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   background: var(--teal);
   color: var(--white);
   font-family: 'DM Sans', sans-serif;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
-  padding: 18px 34px;
+  padding: 17px 32px;
   border-radius: 9px;
-  border: none;
-  cursor: pointer;
+  text-decoration: none;
   letter-spacing: -0.01em;
   box-shadow: 0 4px 28px rgba(14,138,152,0.30);
   transition: background 0.18s, box-shadow 0.18s, transform 0.12s;
 }
 
-.cta:hover {
+.hero-cta:hover {
   background: var(--teal-hover);
-  box-shadow: 0 6px 36px rgba(14,138,152,0.40);
+  box-shadow: 0 6px 36px rgba(14,138,152,0.42);
   transform: translateY(-1px);
 }
 
-.cta:active { transform: scale(0.985); }
-.cta svg { flex-shrink: 0; transition: transform 0.18s; }
-.cta:hover svg { transform: translateX(3px); }
+.hero-cta:active { transform: scale(0.985); }
+.hero-cta svg { flex-shrink: 0; transition: transform 0.18s; }
+.hero-cta:hover svg { transform: translateX(3px); }
 
-.cta-meta {
-  font-size: 12.5px;
-  font-weight: 300;
-  color: var(--dim);
-  line-height: 1.5;
+/* ── FEATURES */
+.features {
+  padding: 0 0 96px;
 }
 
-/* ── CONTACT CARD */
-.contact-wrap {
-  display: none;
-  margin-top: 18px;
-  animation: rise 0.22s ease both;
+.section-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.contact-wrap.show { display: block; }
-
-@keyframes rise {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+.blocks {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
 }
 
-.contact-card {
+.block {
+  padding: 28px 24px 26px;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: 12px;
-  padding: 26px 24px 22px;
+  border-bottom: 2.5px solid;
 }
 
-.card-head {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--secondary);
+.block:first-child  { border-radius: 10px 0 0 10px; border-bottom-color: #10B981; }
+.block:nth-child(2) { border-bottom-color: #F59E0B; }
+.block:last-child   { border-radius: 0 10px 10px 0; border-bottom-color: #3B82F6; }
+
+.block-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.block:first-child  .block-label { color: #6EE7B7; }
+.block:nth-child(2) .block-label { color: #FCD34D; }
+.block:last-child   .block-label { color: #93C5FD; }
+
+.block p {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.70);
+  line-height: 1.65;
+}
+
+/* ── CREDIBILITY */
+.credibility {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 72px 0;
+}
+
+.cred-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cred-quote {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: clamp(19px, 2.2vw, 24px);
+  color: rgba(255,255,255,0.80);
+  line-height: 1.55;
   margin-bottom: 18px;
 }
 
-.field { margin-bottom: 11px; }
+.cred-attr {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.36);
+  letter-spacing: 0.03em;
+}
+
+/* ── REGISTER */
+.register {
+  padding: 88px 0 104px;
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.register-header .eyebrow { margin-bottom: 14px; }
+
+.register-header h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 3vw, 40px);
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.register-header p {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.50);
+  line-height: 1.65;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.form-card {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 36px 32px 32px;
+}
+
+.field { margin-bottom: 12px; }
+
+.field label {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.40);
+  margin-bottom: 7px;
+}
 
 .field input {
   font-family: 'DM Sans', sans-serif;
@@ -287,14 +357,14 @@ h1 .brand { color: #2DD4BF; }
   background: var(--input-bg);
   border: 1.5px solid rgba(255,255,255,0.12);
   border-radius: 8px;
-  padding: 12px 15px;
+  padding: 13px 15px;
   width: 100%;
   outline: none;
   transition: border-color 0.17s, background 0.17s, box-shadow 0.17s;
   -webkit-appearance: none;
 }
 
-.field input::placeholder { color: rgba(255,255,255,0.24); font-weight: 300; }
+.field input::placeholder { color: rgba(255,255,255,0.22); font-weight: 300; }
 
 .field input:focus {
   border-color: rgba(14,138,152,0.75);
@@ -306,21 +376,26 @@ h1 .brand { color: #2DD4BF; }
 
 .send-btn {
   width: 100%;
-  margin-top: 6px;
-  padding: 14px;
-  background: var(--white);
-  color: var(--navy);
+  margin-top: 8px;
+  padding: 15px;
+  background: var(--teal);
+  color: var(--white);
   border: none;
   border-radius: 8px;
   font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
+  font-size: 15.5px;
   font-weight: 600;
   cursor: pointer;
   letter-spacing: -0.01em;
-  transition: opacity 0.17s, transform 0.12s;
+  box-shadow: 0 4px 20px rgba(14,138,152,0.25);
+  transition: background 0.17s, box-shadow 0.17s, transform 0.12s;
 }
 
-.send-btn:hover { opacity: 0.91; }
+.send-btn:hover {
+  background: var(--teal-hover);
+  box-shadow: 0 6px 28px rgba(14,138,152,0.36);
+}
+
 .send-btn:active { transform: scale(0.99); }
 .send-btn:disabled { opacity: 0.38; cursor: not-allowed; }
 
@@ -329,146 +404,231 @@ h1 .brand { color: #2DD4BF; }
   font-weight: 300;
   color: var(--dim);
   text-align: center;
-  margin-top: 11px;
+  margin-top: 12px;
   line-height: 1.55;
 }
 
+.form-error {
+  display: none;
+  font-size: 13px;
+  color: rgba(248,113,113,0.90);
+  background: rgba(248,113,113,0.07);
+  border: 1px solid rgba(248,113,113,0.20);
+  border-radius: 7px;
+  padding: 11px 14px;
+  margin-top: 10px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.form-error.show { display: block; }
+
 /* ── SUCCESS */
-.success { display: none; text-align: center; padding: 8px 0; animation: rise 0.26s ease both; }
+.success {
+  display: none;
+  text-align: center;
+  padding: 28px 0;
+  animation: rise 0.26s ease both;
+}
+
 .success.show { display: block; }
 
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .tick-ring {
-  width: 46px; height: 46px;
+  width: 48px; height: 48px;
   border-radius: 50%;
   border: 1.5px solid rgba(110,231,183,0.35);
   display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 14px;
+  margin: 0 auto 16px;
 }
 
 .success h3 {
   font-family: 'DM Serif Display', serif;
-  font-size: 19px;
+  font-size: 20px;
   color: var(--white);
-  margin-bottom: 7px;
+  margin-bottom: 8px;
 }
 
-.success p { font-size: 13.5px; font-weight: 300; color: var(--secondary); line-height: 1.65; }
+.success p { font-size: 14px; font-weight: 300; color: var(--secondary); line-height: 1.65; }
+
+/* ── FOOTER */
+.footer {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 24px 0;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer span {
+  font-size: 12.5px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.26);
+}
 
 /* ── MOBILE */
-@media (max-width: 500px) {
-  .page { padding: 52px 20px 80px; }
-  h1 { font-size: 32px; }
-  .blocks { grid-template-columns: 1fr; gap: 2px; }
-  .block:first-child  { border-radius: 10px 10px 0 0; }
-  .block:nth-child(2) { border-radius: 0; }
-  .block:last-child   { border-radius: 0 0 10px 10px; }
-  .cta-row { flex-direction: column; align-items: flex-start; }
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .nav-badge { display: none; }
 }
+
+@media (max-width: 600px) {
+  .hero { padding: 72px 0 64px; }
+  .chips { justify-content: flex-start; }
+
+  .features { padding: 0 0 64px; }
+  .blocks { grid-template-columns: 1fr; }
+  .block:first-child  { border-radius: 10px 10px 0 0; }
+  .block:nth-child(2) { border-radius: 0; border-left: 1px solid var(--card-border); border-right: 1px solid var(--card-border); }
+  .block:last-child   { border-radius: 0 0 10px 10px; }
+
+  .credibility { padding: 56px 0; }
+
+  .register { padding: 64px 0 80px; }
+  .form-card { padding: 28px 20px 24px; }
+
+  .footer-inner { justify-content: center; text-align: center; }
+}
+
 </style>
 </head>
 <body>
-<div class="page">
-  <div class="layout">
 
-    <!-- LEFT / HERO COLUMN -->
-    <div class="hero-col">
+<!-- NAV -->
+<header class="nav">
+  <div class="container nav-inner">
+    <div class="nav-left">
+      <span class="nav-brand">PharmaTrack</span>
+      <span class="nav-badge">Pilot</span>
+    </div>
+    <a href="#register" class="nav-link">Join the pilot</a>
+  </div>
+</header>
 
-      <!-- EYEBROW — page identifier -->
-      <p class="eyebrow">Founding Pharmacy Pilot</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow">Founding Pharmacy Pilot</p>
+    <h1>We're looking for <span class="brand">10</span> pharmacies<br>to help test <span class="brand">PharmaTrack</span>.</h1>
+    <p class="hero-sub">PharmaTrack is a delivery operations platform for community pharmacies. Built in a real community pharmacy, for real delivery work.</p>
+    <div class="chips">
+      <span class="chip chip-green"><span class="dot"></span>Live pilot</span>
+      <span class="chip chip-blue"><span class="dot"></span>Working product</span>
+      <span class="chip chip-amber"><span class="dot"></span>Built around real pharmacy workflow</span>
+    </div>
+    <a href="#register" class="hero-cta">
+      Join the pilot
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</section>
 
-      <!-- HERO -->
-      <h1>We're looking for <span class="brand">10</span> pharmacies<br>to help test <span class="brand">PharmaTrack</span>.</h1>
-
-      <p class="support">PharmaTrack is a delivery operations platform for community pharmacies.</p>
-      <p class="support support-sub">Built in a real community pharmacy, for real delivery work.</p>
-
-      <!-- THREE BLOCKS -->
-      <div class="blocks">
-        <div class="block">
-          <p class="block-label">What you get</p>
-          <p>Free use during the pilot. Help shape the product around real pharmacy workflow. Founding partner benefits after.</p>
-        </div>
-        <div class="block">
-          <p class="block-label">What we need</p>
-          <p>Use it in practice. Share honest, useful feedback on what works and what needs improving.</p>
-        </div>
-        <div class="block">
-          <p class="block-label">Who it's for</p>
-          <p>Community pharmacies running regular delivery rounds.</p>
-        </div>
+<!-- FEATURES -->
+<section class="features">
+  <div class="container">
+    <p class="section-label">The pilot at a glance</p>
+    <div class="blocks">
+      <div class="block">
+        <p class="block-label">What you get</p>
+        <p>Free use during the pilot. Help shape the product around real pharmacy workflow. Founding partner benefits after.</p>
       </div>
-
-      <!-- PROOF CHIPS -->
-      <div class="chips">
-        <span class="chip chip-green"><span class="dot"></span>Live pilot</span>
-        <span class="chip chip-blue"><span class="dot"></span>Working product</span>
-        <span class="chip chip-amber"><span class="dot"></span>Built around real pharmacy workflow</span>
+      <div class="block">
+        <p class="block-label">What we need</p>
+        <p>Use it in practice. Share honest, useful feedback on what works and what needs improving.</p>
       </div>
+      <div class="block">
+        <p class="block-label">Who it's for</p>
+        <p>Community pharmacies running regular delivery rounds.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <hr class="rule">
+<!-- CREDIBILITY -->
+<section class="credibility">
+  <div class="container">
+    <div class="cred-inner">
+      <p class="cred-quote">"PharmaTrack was built from the inside — by a pharmacist who ran his own delivery rounds. This is a working product, not a concept."</p>
+      <p class="cred-attr">— Brad, Founder</p>
+    </div>
+  </div>
+</section>
 
-    </div><!-- /hero-col -->
+<!-- REGISTER -->
+<section class="register" id="register">
+  <div class="container">
 
-    <!-- RIGHT / ACTION COLUMN -->
-    <div class="action-col">
+    <div class="register-header">
+      <p class="eyebrow">Get involved</p>
+      <h2>Speak to Brad</h2>
+      <p>Leave your details and he'll be in touch within one working day. No commitment — just a short conversation to see if it's a fit.</p>
+    </div>
 
-      <!-- CTA — single founder reference -->
-      <div class="cta-row" id="ctaRow">
-        <button class="cta" id="ctaBtn" onclick="openCard()">
-          Speak to Brad
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
+    <div class="form-card">
+
+      <div class="success" id="success">
+        <div class="tick-ring">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
           </svg>
-        </button>
-      </div>
-
-      <!-- CONTACT CARD -->
-      <div class="contact-wrap" id="contactWrap">
-        <div class="contact-card">
-
-          <div class="success" id="success">
-            <div class="tick-ring">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-            </div>
-            <h3>Thanks. We'll be in touch shortly.</h3>
-            <p>Usually within one working day.</p>
-          </div>
-
-          <div id="formInner">
-            <p class="card-head">Leave your details</p>
-            <form id="contactForm" novalidate>
-              <div class="field"><input type="text" name="name" placeholder="Your name" required></div>
-              <div class="field"><input type="text" name="pharmacy" placeholder="Pharmacy name" required></div>
-              <div class="field"><input type="text" name="contact" placeholder="Email or phone" required></div>
-              <button type="submit" class="send-btn" id="sendBtn">Send</button>
-              <p class="support-note">No commitment. Just a short conversation to see if it's a fit.</p>
-            </form>
-          </div>
-
         </div>
+        <h3>Thanks. We'll be in touch shortly.</h3>
+        <p>Usually within one working day.</p>
       </div>
 
-    </div><!-- /action-col -->
+      <div id="formInner">
+        <form id="contactForm" novalidate>
+          <div class="field">
+            <label for="inp-name">Your name</label>
+            <input type="text" id="inp-name" name="name" placeholder="e.g. Sarah Mitchell" required>
+          </div>
+          <div class="field">
+            <label for="inp-pharmacy">Pharmacy name</label>
+            <input type="text" id="inp-pharmacy" name="pharmacy" placeholder="e.g. Millfield Pharmacy" required>
+          </div>
+          <div class="field">
+            <label for="inp-contact">Email or phone</label>
+            <input type="text" id="inp-contact" name="contact" placeholder="Best way to reach you" required>
+          </div>
+          <button type="submit" class="send-btn" id="sendBtn">Send</button>
+          <p class="form-error" id="formError">Something went wrong. Please try again, or email us directly.</p>
+          <p class="support-note">No commitment. Just a short conversation to see if it's a fit.</p>
+        </form>
+      </div>
 
-  </div><!-- /layout -->
-</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© 2025 PharmaTrack</span>
+    <span>Founding pilot — 10 places available</span>
+  </div>
+</footer>
 
 <script>
-  function openCard() {
-    document.getElementById('ctaRow').style.display = 'none';
-    const wrap = document.getElementById('contactWrap');
-    wrap.classList.add('show');
-    setTimeout(() => wrap.querySelector('input').focus(), 240);
-  }
-
   document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    const form = e.target;
-    const btn  = document.getElementById('sendBtn');
+    const form    = e.target;
+    const btn     = document.getElementById('sendBtn');
+    const errorEl = document.getElementById('formError');
 
     form.querySelectorAll('.err').forEach(el => el.classList.remove('err'));
+    errorEl.classList.remove('show');
+
     let valid = true;
     form.querySelectorAll('[required]').forEach(el => {
       if (!el.value.trim()) { el.classList.add('err'); valid = false; }
@@ -480,14 +640,22 @@ h1 .brand { color: #2DD4BF; }
 
     const data = Object.fromEntries(new FormData(form));
 
+    let ok = false;
     try {
       const res = await fetch('/api/pilot-interest', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
-      if (!res.ok) throw new Error();
-    } catch { /* graceful fallback */ }
+      ok = res.ok;
+    } catch { /* network error — ok stays false */ }
+
+    if (!ok) {
+      btn.textContent = 'Send';
+      btn.disabled = false;
+      errorEl.classList.add('show');
+      return;
+    }
 
     document.getElementById('formInner').style.display = 'none';
     document.getElementById('success').classList.add('show');

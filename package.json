@@ -1,0 +1,9 @@
+{
+  "name": "pharmatrack-pilot",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@supabase/supabase-js": "^2",
+    "resend": "^4"
+  }
+}
