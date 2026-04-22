@@ -77,11 +77,19 @@ body {
   font-weight: 600;
   letter-spacing: 0.10em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.34);
+  color: #2DD4BF;
   padding: 3px 9px;
-  border: 1px solid rgba(255,255,255,0.10);
+  border: 1px solid rgba(45,212,191,0.32);
   border-radius: 20px;
   line-height: 1;
+  background: rgba(45,212,191,0.07);
+  box-shadow: 0 0 10px rgba(45,212,191,0.10);
+  animation: badge-breathe 4s ease-in-out infinite;
+}
+
+@keyframes badge-breathe {
+  0%, 100% { box-shadow: 0 0 8px rgba(45,212,191,0.10); }
+  50%       { box-shadow: 0 0 16px rgba(45,212,191,0.22); }
 }
 
 .nav-link {
@@ -559,7 +567,7 @@ h1 .brand { color: #2DD4BF; }
 <section class="credibility">
   <div class="container">
     <div class="cred-inner">
-      <p class="cred-quote">"PharmaTrack was built from the inside — by a pharmacist who ran his own delivery rounds. This is a working product, not a concept."</p>
+      <p class="cred-quote">"PharmaTrack is being built in a real community pharmacy, shaped by live delivery rounds and day-to-day input from the lead pharmacist and dispensary team."</p>
       <p class="cred-attr">— Brad, Founder</p>
     </div>
   </div>
