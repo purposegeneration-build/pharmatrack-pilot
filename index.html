@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PharmaTrack — Founding Pharmacy Pilot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:        #0B1C38;
+  --teal:        #0E8A98;
+  --teal-hover:  #0C7582;
+  --blue:        #3B82F6;
+  --green:       #10B981;
+  --amber:       #F59E0B;
+  --white:       #FFFFFF;
+  --body:        rgba(255,255,255,0.72);
+  --secondary:   rgba(255,255,255,0.52);
+  --dim:         rgba(255,255,255,0.30);
+  --card-bg:     rgba(255,255,255,0.055);
+  --card-border: rgba(255,255,255,0.09);
+  --input-bg:    rgba(255,255,255,0.065);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -140px; left: 50%;
+  transform: translateX(-50%);
+  width: 760px; height: 520px;
+  background: radial-gradient(ellipse at center top, rgba(14,138,152,0.10) 0%, transparent 68%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 64px 28px 96px;
+}
+
+/* ── EYEBROW — page identifier, clearly visible */
+.eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #5EEAD4;
+  margin-bottom: 24px;
+  text-shadow: 0 0 20px rgba(94,234,212,0.35);
+}
+
+/* ── HERO */
+h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(34px, 7vw, 50px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+/* teal accent on brand name */
+h1 .brand { color: #2DD4BF; }
+
+.support {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.62);
+  line-height: 1.65;
+  margin-bottom: 40px;
+}
+
+.support-sub {
+  margin-top: -28px;
+  color: rgba(255,255,255,0.40);
+  font-size: 13.5px;
+}
+
+/* ── THREE BLOCKS */
+.blocks {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 44px;
+}
+
+.block {
+  padding: 22px 18px 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-bottom: 2.5px solid;
+}
+
+.block:first-child  { border-radius: 10px 0 0 10px; border-bottom-color: #10B981; }
+.block:nth-child(2) { border-bottom-color: #F59E0B; }
+.block:last-child   { border-radius: 0 10px 10px 0; border-bottom-color: #3B82F6; }
+
+.block-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  margin-bottom: 9px;
+}
+
+.block:first-child  .block-label { color: #6EE7B7; }
+.block:nth-child(2) .block-label { color: #FCD34D; }
+.block:last-child   .block-label { color: #93C5FD; }
+
+.block p {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.6;
+}
+
+/* ── PROOF CHIPS */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 7px 13px;
+  border-radius: 6px;
+  border: 1px solid;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+.chip-green { color: #6EE7B7; border-color: rgba(110,231,183,0.24); background: rgba(110,231,183,0.07); }
+.chip-blue  { color: #93C5FD; border-color: rgba(147,197,253,0.24); background: rgba(147,197,253,0.07); }
+.chip-amber { color: #FCD34D; border-color: rgba(252,211,77,0.24);  background: rgba(252,211,77,0.07);  }
+
+.dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse 2.6s ease-in-out infinite;
+}
+.chip-green .dot { background: #6EE7B7; }
+.chip-blue  .dot { background: #93C5FD; animation-delay: 0.7s; }
+.chip-amber .dot { background: #FCD34D; animation-delay: 1.4s; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.65); }
+}
+
+/* ── RULE */
+.rule {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  margin: 0 0 28px;
+}
+
+/* ── INVITE */
+.invite {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--dim);
+  margin-bottom: 22px;
+  line-height: 1.6;
+}
+
+/* ── CTA */
+.cta-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--teal);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 18px 34px;
+  border-radius: 9px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: -0.01em;
+  box-shadow: 0 4px 28px rgba(14,138,152,0.30);
+  transition: background 0.18s, box-shadow 0.18s, transform 0.12s;
+}
+
+.cta:hover {
+  background: var(--teal-hover);
+  box-shadow: 0 6px 36px rgba(14,138,152,0.40);
+  transform: translateY(-1px);
+}
+
+.cta:active { transform: scale(0.985); }
+.cta svg { flex-shrink: 0; transition: transform 0.18s; }
+.cta:hover svg { transform: translateX(3px); }
+
+.cta-meta {
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--dim);
+  line-height: 1.5;
+}
+
+/* ── CONTACT CARD */
+.contact-wrap {
+  display: none;
+  margin-top: 18px;
+  animation: rise 0.22s ease both;
+}
+
+.contact-wrap.show { display: block; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.contact-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 26px 24px 22px;
+}
+
+.card-head {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--secondary);
+  margin-bottom: 18px;
+}
+
+.field { margin-bottom: 11px; }
+
+.field input {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--white);
+  background: var(--input-bg);
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 12px 15px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.17s, background 0.17s, box-shadow 0.17s;
+  -webkit-appearance: none;
+}
+
+.field input::placeholder { color: rgba(255,255,255,0.24); font-weight: 300; }
+
+.field input:focus {
+  border-color: rgba(14,138,152,0.75);
+  background: rgba(255,255,255,0.09);
+  box-shadow: 0 0 0 3px rgba(14,138,152,0.15);
+}
+
+.field input.err { border-color: rgba(248,113,113,0.65); }
+
+.send-btn {
+  width: 100%;
+  margin-top: 6px;
+  padding: 14px;
+  background: var(--white);
+  color: var(--navy);
+  border: none;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: -0.01em;
+  transition: opacity 0.17s, transform 0.12s;
+}
+
+.send-btn:hover { opacity: 0.91; }
+.send-btn:active { transform: scale(0.99); }
+.send-btn:disabled { opacity: 0.38; cursor: not-allowed; }
+
+.support-note {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--dim);
+  text-align: center;
+  margin-top: 11px;
+  line-height: 1.55;
+}
+
+/* ── SUCCESS */
+.success { display: none; text-align: center; padding: 8px 0; animation: rise 0.26s ease both; }
+.success.show { display: block; }
+
+.tick-ring {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(110,231,183,0.35);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px;
+}
+
+.success h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 19px;
+  color: var(--white);
+  margin-bottom: 7px;
+}
+
+.success p { font-size: 13.5px; font-weight: 300; color: var(--secondary); line-height: 1.65; }
+
+/* ── MOBILE */
+@media (max-width: 500px) {
+  .page { padding: 52px 20px 80px; }
+  h1 { font-size: 32px; }
+  .blocks { grid-template-columns: 1fr; gap: 2px; }
+  .block:first-child  { border-radius: 10px 10px 0 0; }
+  .block:nth-child(2) { border-radius: 0; }
+  .block:last-child   { border-radius: 0 0 10px 10px; }
+  .cta-row { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- EYEBROW — page identifier -->
+  <p class="eyebrow">Founding Pharmacy Pilot</p>
+
+  <!-- HERO -->
+  <h1>We're looking for <span class="brand">10</span> pharmacies<br>to help test <span class="brand">PharmaTrack</span>.</h1>
+
+  <p class="support">PharmaTrack is a delivery operations platform for community pharmacies.</p>
+  <p class="support support-sub">Built in a real community pharmacy, for real delivery work.</p>
+
+  <!-- THREE BLOCKS -->
+  <div class="blocks">
+    <div class="block">
+      <p class="block-label">What you get</p>
+      <p>Free use during the pilot. Help shape the product around real pharmacy workflow. Founding partner benefits after.</p>
+    </div>
+    <div class="block">
+      <p class="block-label">What we need</p>
+      <p>Use it in practice. Share honest, useful feedback on what works and what needs improving.</p>
+    </div>
+    <div class="block">
+      <p class="block-label">Who it's for</p>
+      <p>Community pharmacies running regular delivery rounds.</p>
+    </div>
+  </div>
+
+  <!-- PROOF CHIPS -->
+  <div class="chips">
+    <span class="chip chip-green"><span class="dot"></span>Live pilot</span>
+    <span class="chip chip-blue"><span class="dot"></span>Working product</span>
+    <span class="chip chip-amber"><span class="dot"></span>Built around real pharmacy workflow</span>
+  </div>
+
+  <hr class="rule">
+
+
+  <!-- CTA — single founder reference -->
+  <div class="cta-row" id="ctaRow">
+    <button class="cta" id="ctaBtn" onclick="openCard()">
+      Speak to Brad
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- CONTACT CARD -->
+  <div class="contact-wrap" id="contactWrap">
+    <div class="contact-card">
+
+      <div class="success" id="success">
+        <div class="tick-ring">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h3>Thanks. We'll be in touch shortly.</h3>
+        <p>Usually within one working day.</p>
+      </div>
+
+      <div id="formInner">
+        <p class="card-head">Leave your details</p>
+        <form id="contactForm" novalidate>
+          <div class="field"><input type="text" name="name" placeholder="Your name" required></div>
+          <div class="field"><input type="text" name="pharmacy" placeholder="Pharmacy name" required></div>
+          <div class="field"><input type="text" name="contact" placeholder="Email or phone" required></div>
+          <button type="submit" class="send-btn" id="sendBtn">Send</button>
+          <p class="support-note">No commitment. Just a short conversation to see if it's a fit.</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function openCard() {
+    document.getElementById('ctaRow').style.display = 'none';
+    const wrap = document.getElementById('contactWrap');
+    wrap.classList.add('show');
+    setTimeout(() => wrap.querySelector('input').focus(), 240);
+  }
+
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn  = document.getElementById('sendBtn');
+
+    form.querySelectorAll('.err').forEach(el => el.classList.remove('err'));
+    let valid = true;
+    form.querySelectorAll('[required]').forEach(el => {
+      if (!el.value.trim()) { el.classList.add('err'); valid = false; }
+    });
+    if (!valid) return;
+
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    const data = Object.fromEntries(new FormData(form));
+
+    try {
+      const res = await fetch('/api/pilot-interest', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error();
+    } catch { /* graceful fallback */ }
+
+    document.getElementById('formInner').style.display = 'none';
+    document.getElementById('success').classList.add('show');
+  });
+</script>
+</body>
+</html>
