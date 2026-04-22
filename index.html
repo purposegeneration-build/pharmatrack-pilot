@@ -39,10 +39,10 @@ body {
 body::before {
   content: '';
   position: fixed;
-  top: -140px; left: 50%;
+  top: -160px; left: 50%;
   transform: translateX(-50%);
-  width: 760px; height: 520px;
-  background: radial-gradient(ellipse at center top, rgba(14,138,152,0.10) 0%, transparent 68%);
+  width: 1100px; height: 680px;
+  background: radial-gradient(ellipse at center top, rgba(14,138,152,0.09) 0%, transparent 65%);
   pointer-events: none;
   z-index: 0;
 }
@@ -50,9 +50,28 @@ body::before {
 .page {
   position: relative;
   z-index: 1;
-  max-width: 580px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 64px 28px 96px;
+}
+
+/* ── TWO-COLUMN LAYOUT on desktop */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 72px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .layout { display: block; }
+}
+
+@media (min-width: 769px) {
+  .page { padding: 88px 48px 112px; }
+  .action-col { position: sticky; top: 56px; }
+  .rule { display: none; }
+  .action-col .cta { width: 100%; justify-content: center; }
 }
 
 /* ── EYEBROW — page identifier, clearly visible */
@@ -70,18 +89,18 @@ body::before {
 /* ── HERO */
 h1 {
   font-family: 'DM Serif Display', serif;
-  font-size: clamp(34px, 7vw, 50px);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
+  font-size: clamp(34px, 5vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
   color: var(--white);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 /* teal accent on brand name */
 h1 .brand { color: #2DD4BF; }
 
 .support {
-  font-size: 15px;
+  font-size: clamp(14px, 1.5vw, 16px);
   font-weight: 300;
   color: rgba(255,255,255,0.62);
   line-height: 1.65;
@@ -126,7 +145,7 @@ h1 .brand { color: #2DD4BF; }
 .block:last-child   .block-label { color: #93C5FD; }
 
 .block p {
-  font-size: 13px;
+  font-size: clamp(12px, 1.2vw, 14px);
   font-weight: 300;
   color: rgba(255,255,255,0.72);
   line-height: 1.6;
@@ -349,80 +368,91 @@ h1 .brand { color: #2DD4BF; }
 </head>
 <body>
 <div class="page">
+  <div class="layout">
 
-  <!-- EYEBROW — page identifier -->
-  <p class="eyebrow">Founding Pharmacy Pilot</p>
+    <!-- LEFT / HERO COLUMN -->
+    <div class="hero-col">
 
-  <!-- HERO -->
-  <h1>We're looking for <span class="brand">10</span> pharmacies<br>to help test <span class="brand">PharmaTrack</span>.</h1>
+      <!-- EYEBROW — page identifier -->
+      <p class="eyebrow">Founding Pharmacy Pilot</p>
 
-  <p class="support">PharmaTrack is a delivery operations platform for community pharmacies.</p>
-  <p class="support support-sub">Built in a real community pharmacy, for real delivery work.</p>
+      <!-- HERO -->
+      <h1>We're looking for <span class="brand">10</span> pharmacies<br>to help test <span class="brand">PharmaTrack</span>.</h1>
 
-  <!-- THREE BLOCKS -->
-  <div class="blocks">
-    <div class="block">
-      <p class="block-label">What you get</p>
-      <p>Free use during the pilot. Help shape the product around real pharmacy workflow. Founding partner benefits after.</p>
-    </div>
-    <div class="block">
-      <p class="block-label">What we need</p>
-      <p>Use it in practice. Share honest, useful feedback on what works and what needs improving.</p>
-    </div>
-    <div class="block">
-      <p class="block-label">Who it's for</p>
-      <p>Community pharmacies running regular delivery rounds.</p>
-    </div>
-  </div>
+      <p class="support">PharmaTrack is a delivery operations platform for community pharmacies.</p>
+      <p class="support support-sub">Built in a real community pharmacy, for real delivery work.</p>
 
-  <!-- PROOF CHIPS -->
-  <div class="chips">
-    <span class="chip chip-green"><span class="dot"></span>Live pilot</span>
-    <span class="chip chip-blue"><span class="dot"></span>Working product</span>
-    <span class="chip chip-amber"><span class="dot"></span>Built around real pharmacy workflow</span>
-  </div>
-
-  <hr class="rule">
-
-
-  <!-- CTA — single founder reference -->
-  <div class="cta-row" id="ctaRow">
-    <button class="cta" id="ctaBtn" onclick="openCard()">
-      Speak to Brad
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M5 12h14M12 5l7 7-7 7"/>
-      </svg>
-    </button>
-  </div>
-
-  <!-- CONTACT CARD -->
-  <div class="contact-wrap" id="contactWrap">
-    <div class="contact-card">
-
-      <div class="success" id="success">
-        <div class="tick-ring">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
+      <!-- THREE BLOCKS -->
+      <div class="blocks">
+        <div class="block">
+          <p class="block-label">What you get</p>
+          <p>Free use during the pilot. Help shape the product around real pharmacy workflow. Founding partner benefits after.</p>
         </div>
-        <h3>Thanks. We'll be in touch shortly.</h3>
-        <p>Usually within one working day.</p>
+        <div class="block">
+          <p class="block-label">What we need</p>
+          <p>Use it in practice. Share honest, useful feedback on what works and what needs improving.</p>
+        </div>
+        <div class="block">
+          <p class="block-label">Who it's for</p>
+          <p>Community pharmacies running regular delivery rounds.</p>
+        </div>
       </div>
 
-      <div id="formInner">
-        <p class="card-head">Leave your details</p>
-        <form id="contactForm" novalidate>
-          <div class="field"><input type="text" name="name" placeholder="Your name" required></div>
-          <div class="field"><input type="text" name="pharmacy" placeholder="Pharmacy name" required></div>
-          <div class="field"><input type="text" name="contact" placeholder="Email or phone" required></div>
-          <button type="submit" class="send-btn" id="sendBtn">Send</button>
-          <p class="support-note">No commitment. Just a short conversation to see if it's a fit.</p>
-        </form>
+      <!-- PROOF CHIPS -->
+      <div class="chips">
+        <span class="chip chip-green"><span class="dot"></span>Live pilot</span>
+        <span class="chip chip-blue"><span class="dot"></span>Working product</span>
+        <span class="chip chip-amber"><span class="dot"></span>Built around real pharmacy workflow</span>
       </div>
 
-    </div>
-  </div>
+      <hr class="rule">
 
+    </div><!-- /hero-col -->
+
+    <!-- RIGHT / ACTION COLUMN -->
+    <div class="action-col">
+
+      <!-- CTA — single founder reference -->
+      <div class="cta-row" id="ctaRow">
+        <button class="cta" id="ctaBtn" onclick="openCard()">
+          Speak to Brad
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- CONTACT CARD -->
+      <div class="contact-wrap" id="contactWrap">
+        <div class="contact-card">
+
+          <div class="success" id="success">
+            <div class="tick-ring">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <h3>Thanks. We'll be in touch shortly.</h3>
+            <p>Usually within one working day.</p>
+          </div>
+
+          <div id="formInner">
+            <p class="card-head">Leave your details</p>
+            <form id="contactForm" novalidate>
+              <div class="field"><input type="text" name="name" placeholder="Your name" required></div>
+              <div class="field"><input type="text" name="pharmacy" placeholder="Pharmacy name" required></div>
+              <div class="field"><input type="text" name="contact" placeholder="Email or phone" required></div>
+              <button type="submit" class="send-btn" id="sendBtn">Send</button>
+              <p class="support-note">No commitment. Just a short conversation to see if it's a fit.</p>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /action-col -->
+
+  </div><!-- /layout -->
 </div>
 
 <script>
