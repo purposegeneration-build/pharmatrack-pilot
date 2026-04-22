@@ -628,6 +628,10 @@ h1 .brand { color: #2DD4BF; }
 </footer>
 
 <script>
+  // Always open at the top — prevents browsers restoring a previous scroll position
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+
   document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const form    = e.target;
