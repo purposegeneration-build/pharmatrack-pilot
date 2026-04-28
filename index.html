@@ -580,7 +580,7 @@ h1 .brand { color: #2DD4BF; }
     <div class="register-header">
       <p class="eyebrow">Get involved</p>
       <h2>Speak to Brad</h2>
-      <p>Leave your details and I'll be in touch within one working day. No commitment. Just a short call to see whether PharmaTrack fits your delivery setup.</p>
+      <p>Leave your details and I'll be in touch by email within one working day. No commitment — we can arrange a short call if there's a good fit.</p>
     </div>
 
     <div class="form-card">
@@ -609,9 +609,9 @@ h1 .brand { color: #2DD4BF; }
             <label for="inp-contact">Email address</label>
             <input type="email" id="inp-contact" name="contact" placeholder="your@email.com" required>
           </div>
-          <button type="submit" class="send-btn" id="sendBtn">Request pilot call</button>
+          <button type="submit" class="send-btn" id="sendBtn">Start pilot conversation</button>
           <p class="form-error" id="formError">Something went wrong. Please try again, or email us directly.</p>
-          <p class="support-note">No commitment. Just a short call to see whether PharmaTrack fits your delivery setup.</p>
+          <p class="support-note">No commitment. I'll reply by email first, then we can arrange a short call if there's a good fit.</p>
         </form>
       </div>
 
@@ -663,7 +663,7 @@ h1 .brand { color: #2DD4BF; }
     } catch { /* network error — ok stays false */ }
 
     if (!ok) {
-      btn.textContent = 'Request pilot call';
+      btn.textContent = 'Start pilot conversation';
       btn.disabled = false;
       errorEl.classList.add('show');
       return;
