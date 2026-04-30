@@ -111,7 +111,7 @@ body {
 
 /* ── HERO */
 .hero {
-  padding: 104px 0 92px;
+  padding: 84px 0 92px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -134,7 +134,7 @@ body {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #5EEAD4;
-  margin-bottom: 22px;
+  margin-bottom: 14px;
   text-shadow: 0 0 20px rgba(94,234,212,0.35);
 }
 
@@ -144,7 +144,7 @@ h1 {
   line-height: 1.07;
   letter-spacing: -0.025em;
   color: var(--white);
-  margin-bottom: 22px;
+  margin-bottom: 16px;
   max-width: 720px;
   margin-left: auto;
   margin-right: auto;
@@ -245,7 +245,7 @@ h1 .brand { color: #2DD4BF; }
 
 .blocks {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 2px;
 }
 
@@ -253,24 +253,17 @@ h1 .brand { color: #2DD4BF; }
   padding: 28px 24px 26px;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-bottom: 2.5px solid;
+  border-radius: 10px;
 }
-
-.block:first-child  { border-radius: 10px 0 0 10px; border-bottom-color: #10B981; }
-.block:nth-child(2) { border-bottom-color: #F59E0B; }
-.block:last-child   { border-radius: 0 10px 10px 0; border-bottom-color: #3B82F6; }
 
 .block-label {
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.13em;
   text-transform: uppercase;
+  color: rgba(255,255,255,0.40);
   margin-bottom: 10px;
 }
-
-.block:first-child  .block-label { color: #6EE7B7; }
-.block:nth-child(2) .block-label { color: #FCD34D; }
-.block:last-child   .block-label { color: #93C5FD; }
 
 .block p {
   font-size: 14px;
@@ -495,9 +488,6 @@ h1 .brand { color: #2DD4BF; }
 
   .features { padding: 0 0 64px; }
   .blocks { grid-template-columns: 1fr; }
-  .block:first-child  { border-radius: 10px 10px 0 0; }
-  .block:nth-child(2) { border-radius: 0; border-left: 1px solid var(--card-border); border-right: 1px solid var(--card-border); }
-  .block:last-child   { border-radius: 0 0 10px 10px; }
 
   .credibility { padding: 56px 0; }
 
@@ -526,8 +516,8 @@ h1 .brand { color: #2DD4BF; }
 <section class="hero">
   <div class="container">
     <p class="eyebrow">Founding Pharmacy Pilot</p>
-    <h1>We're looking for <span class="brand">10</span> ambitious community pharmacies to help shape the future of pharmacy delivery.</h1>
-    <p class="hero-sub">A delivery operations platform built in a real pharmacy, helping teams stay on top of deliveries as they happen.</p>
+    <h1>We're looking for <span class="brand">10</span> ambitious community pharmacies<br>to help shape the future of pharmacy delivery.</h1>
+    <p class="hero-sub">Built in a real pharmacy, helping teams stay on top of deliveries as they happen.</p>
     <div class="chips">
       <span class="chip chip-green"><span class="dot"></span>Live pilot</span>
       <span class="chip chip-blue"><span class="dot"></span>Working product</span>
@@ -549,7 +539,7 @@ h1 .brand { color: #2DD4BF; }
     <div class="blocks">
       <div class="block">
         <p class="block-label">What you get</p>
-        <p>Free pilot access, founder support, and a direct say in how PharmaTrack develops.</p>
+        <p>Free pilot access, direct support, and a chance to help shape the future of pharmacy delivery operations.</p>
       </div>
       <div class="block">
         <p class="block-label">What we need</p>
@@ -558,6 +548,10 @@ h1 .brand { color: #2DD4BF; }
       <div class="block">
         <p class="block-label">Who it's for</p>
         <p>Ambitious community pharmacies running regular local deliveries.</p>
+      </div>
+      <div class="block">
+        <p class="block-label">The result</p>
+        <p>Time, confidence, and control.</p>
       </div>
     </div>
   </div>
@@ -579,7 +573,7 @@ h1 .brand { color: #2DD4BF; }
 
     <div class="register-header">
       <p class="eyebrow">Get involved</p>
-      <h2>Speak to us</h2>
+      <h2>Start the pilot conversation</h2>
       <p>Leave your details and we'll be in touch by email soon.</p>
     </div>
 
