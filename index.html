@@ -150,7 +150,7 @@ h1 {
   font-size: clamp(36px, 5vw, 62px);
   line-height: 1.07;
   letter-spacing: -0.025em;
-  color: var(--white);
+  color: var(--slate-300);
   margin-bottom: 16px;
   max-width: 720px;
   margin-left: auto;
@@ -158,6 +158,7 @@ h1 {
 }
 
 h1 .brand { color: var(--blue); }
+h1 .h1-em { color: var(--white); }
 
 .hero-sub {
   font-size: clamp(15px, 1.6vw, 17px);
@@ -273,7 +274,8 @@ h1 .brand { color: var(--blue); }
 .block:nth-child(1) .block-label { color: #86efac; }
 .block:nth-child(2) .block-label { color: #fde68a; }
 .block:nth-child(3) .block-label { color: var(--blue-light); }
-.block:nth-child(4) .block-label { color: #86efac; }
+.block:nth-child(4) .block-label { color: var(--white); }
+.block:nth-child(4) p { font-weight: 600; color: var(--white); }
 
 .block p {
   font-size: 14px;
@@ -528,7 +530,7 @@ h1 .brand { color: var(--blue); }
 <section class="hero">
   <div class="container">
     <p class="eyebrow">Founding Pharmacy Pilot</p>
-    <h1>We're looking for <span class="brand">10</span> ambitious community pharmacies<br>to help shape the future of pharmacy delivery.</h1>
+    <h1>We're looking for <span class="brand">10</span> <span class="h1-em">ambitious community pharmacies</span><br>to help shape the future of pharmacy delivery.</h1>
     <p class="hero-sub">Built in a real pharmacy, helping teams stay on top of deliveries as they happen.</p>
     <div class="chips">
       <span class="chip chip-green"><span class="dot"></span>Live pilot</span>
@@ -573,7 +575,7 @@ h1 .brand { color: var(--blue); }
 <section class="credibility">
   <div class="container">
     <div class="cred-inner">
-      <p class="cred-quote">"PharmaTrack is being built inside real community pharmacies, shaped by live deliveries, staff feedback, driver use, and the delivery problems teams deal with every day."</p>
+      <p class="cred-quote">"Built during live delivery rounds, not in theory."</p>
       <p class="cred-attr">— Brad, Founder</p>
     </div>
   </div>
