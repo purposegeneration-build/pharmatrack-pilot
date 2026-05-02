@@ -68,7 +68,7 @@ module.exports = async function handler(req, res) {
           '',
           'Thanks for getting in touch about the PharmaTrack pilot.',
           '',
-          'Brad will be in touch soon for a quick chat to learn more about you and your pharmacy, answer any questions, and talk through the next steps.',
+          "I'll be in touch soon for a quick chat to learn more about you and your pharmacy, answer any questions, and talk through the next steps.",
           '',
           'Appreciated,',
           'Brad',
