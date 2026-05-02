@@ -62,16 +62,17 @@ module.exports = async function handler(req, res) {
       resend.emails.send({
         from:    process.env.FROM_EMAIL,
         to:      clean.contact,
-        subject: 'Thanks for your interest in PharmaTrack',
+        subject: 'Thanks for your interest in the PharmaTrack pilot',
         text:    [
           `Hi ${clean.name},`,
           '',
           'Thanks for getting in touch about the PharmaTrack pilot.',
           '',
-          "Brad will be in touch within one working day for a short conversation to see if it's a fit.",
+          'Brad will be in touch soon for a quick chat to learn more about you and your pharmacy, answer any questions, and talk through the next steps.',
           '',
-          'Talk soon,',
+          'Appreciated,',
           'Brad',
+          'Founder & Product Lead',
           'PharmaTrack',
         ].join('\n'),
       })
