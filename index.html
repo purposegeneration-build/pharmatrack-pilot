@@ -441,6 +441,15 @@ h1 .brand { color: var(--blue); }
 
 .form-error.show { display: block; }
 
+.field-hint {
+  display: none;
+  font-size: 12px;
+  color: rgba(248,113,113,0.90);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+.field-hint.show { display: block; }
+
 /* ── SUCCESS */
 .success {
   display: none;
@@ -632,6 +641,7 @@ h1 .brand { color: var(--blue); }
           <div class="field">
             <label for="inp-confirm">Confirm email</label>
             <input type="email" id="inp-confirm" placeholder="Confirm your email" required>
+            <p class="field-hint" id="confirmHint">Email addresses don't match.</p>
           </div>
           <button type="submit" class="send-btn" id="sendBtn">Start the pilot conversation</button>
           <p class="form-error" id="formError">Something went wrong. Please try again, or email us directly.</p>
@@ -654,6 +664,23 @@ h1 .brand { color: var(--blue); }
   // Always open at the top — prevents browsers restoring a previous scroll position
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   window.scrollTo(0, 0);
+
+  function checkEmailMatch() {
+    const emailVal   = document.getElementById('inp-contact').value.trim().toLowerCase();
+    const confirmVal = document.getElementById('inp-confirm').value.trim().toLowerCase();
+    const confirmEl  = document.getElementById('inp-confirm');
+    const hintEl     = document.getElementById('confirmHint');
+    if (emailVal && confirmVal && emailVal !== confirmVal) {
+      confirmEl.classList.add('err');
+      hintEl.classList.add('show');
+    } else {
+      confirmEl.classList.remove('err');
+      hintEl.classList.remove('show');
+    }
+  }
+
+  document.getElementById('inp-contact').addEventListener('input', checkEmailMatch);
+  document.getElementById('inp-confirm').addEventListener('input', checkEmailMatch);
 
   document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
