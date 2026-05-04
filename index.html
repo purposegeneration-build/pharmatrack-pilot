@@ -629,6 +629,10 @@ h1 .brand { color: var(--blue); }
             <label for="inp-contact">Email address</label>
             <input type="email" id="inp-contact" name="contact" placeholder="your@email.com" required>
           </div>
+          <div class="field">
+            <label for="inp-confirm">Confirm email</label>
+            <input type="email" id="inp-confirm" placeholder="Confirm your email" required>
+          </div>
           <button type="submit" class="send-btn" id="sendBtn">Start the pilot conversation</button>
           <p class="form-error" id="formError">Something went wrong. Please try again, or email us directly.</p>
         </form>
@@ -666,6 +670,18 @@ h1 .brand { color: var(--blue); }
     });
     if (!valid) return;
 
+    const emailVal   = document.getElementById('inp-contact').value.trim().toLowerCase();
+    const confirmVal = document.getElementById('inp-confirm').value.trim().toLowerCase();
+    if (emailVal !== confirmVal) {
+      const confirmEl = document.getElementById('inp-confirm');
+      confirmEl.classList.add('err');
+      errorEl.textContent = 'Please check the email address — both email fields need to match.';
+      errorEl.classList.add('show');
+      confirmEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      confirmEl.focus();
+      return;
+    }
+
     btn.textContent = 'Sending…';
     btn.disabled = true;
 
@@ -684,6 +700,7 @@ h1 .brand { color: var(--blue); }
     if (!ok) {
       btn.textContent = 'Start the pilot conversation';
       btn.disabled = false;
+      errorEl.textContent = 'Something went wrong. Please try again, or email us directly.';
       errorEl.classList.add('show');
       return;
     }

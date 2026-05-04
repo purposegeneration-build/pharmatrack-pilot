@@ -74,7 +74,7 @@ module.exports = async function handler(req, res) {
         </tr>
         <tr>
           <td style="padding:32px 40px;">
-            <table cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+            <table cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 24px;">
               <tr>
                 <td style="width:36px;height:36px;background:#dcfce7;border-radius:50%;text-align:center;vertical-align:middle;">
                   <span style="font-size:20px;line-height:36px;color:#16a34a;">&#10003;</span>
