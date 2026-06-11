@@ -63,36 +63,84 @@ module.exports = async function handler(req, res) {
     const autoReplyHtml = `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#0d1117;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0d1117;padding:40px 16px;">
+<body style="margin:0;padding:0;background:#0f1623;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0f1623;padding:48px 16px;">
     <tr><td align="center">
-      <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border-radius:12px;overflow:hidden;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="max-width:580px;background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.12);">
+        <!-- Header -->
         <tr>
-          <td style="padding:32px 40px 24px;border-bottom:1px solid #f0f0f0;">
-            <span style="font-size:22px;font-weight:700;color:#111827;letter-spacing:-0.5px;">Pharma<span style="color:#2563eb;">Track</span></span>
+          <td style="padding:36px 40px 28px;text-align:center;border-bottom:1px solid #eef1f5;">
+            <span style="font-size:24px;font-weight:700;color:#0f1623;letter-spacing:-0.5px;">Pharma<span style="color:#2563eb;">Track</span></span>
           </td>
         </tr>
+        <!-- Body -->
         <tr>
-          <td style="padding:32px 40px;">
-            <table cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 24px;">
+          <td style="padding:36px 44px 40px;">
+            <!-- Green confirmation indicator -->
+            <table cellpadding="0" cellspacing="0" width="100%" style="margin:0 0 28px;">
               <tr>
-                <td style="width:36px;height:36px;background:#dcfce7;border-radius:50%;text-align:center;vertical-align:middle;">
-                  <span style="font-size:20px;line-height:36px;color:#16a34a;">&#10003;</span>
+                <td align="center">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="width:40px;height:40px;background:#dcfce7;border-radius:50%;text-align:center;vertical-align:middle;">
+                        <span style="font-size:20px;line-height:40px;color:#16a34a;">&#10003;</span>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="padding-top:14px;">
+                  <p style="margin:0;font-size:14px;font-weight:600;color:#16a34a;letter-spacing:0.3px;">Enquiry received</p>
                 </td>
               </tr>
             </table>
-            <p style="margin:0 0 16px;font-size:16px;color:#111827;">Hi ${firstName},</p>
-            <p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#374151;">Thanks for your interest in becoming a PharmaTrack founding pilot pharmacy.</p>
-            <p style="margin:0 0 32px;font-size:15px;line-height:1.6;color:#374151;">I've received your details and will be in touch soon to learn more about your pharmacy, answer any questions, and talk through the next steps.</p>
-            <p style="margin:0 0 4px;font-size:15px;color:#374151;">Appreciated,</p>
-            <p style="margin:0 0 2px;font-size:15px;font-weight:600;color:#111827;">Brad</p>
-            <p style="margin:0 0 2px;font-size:13px;color:#6b7280;">Founder &amp; Product Lead</p>
-            <p style="margin:0;font-size:13px;color:#6b7280;font-weight:500;">Pharma<span style="color:#2563eb;">Track</span></p>
+            <!-- Greeting and body (left-aligned) -->
+            <p style="margin:0 0 20px;font-size:16px;color:#0f1623;font-weight:500;">Hi ${firstName},</p>
+            <p style="margin:0 0 18px;font-size:15px;line-height:1.7;color:#1e293b;">Thanks for your interest in joining the PharmaTrack founding pilot.</p>
+            <p style="margin:0 0 18px;font-size:15px;line-height:1.7;color:#1e293b;">PharmaTrack is being opened to a small group of community pharmacies that want clearer delivery operations, better customer communication, and stronger care-team updates without adding more admin.</p>
+            <p style="margin:0 0 28px;font-size:15px;line-height:1.7;color:#1e293b;">I've received your details and will come back to you personally to learn a bit more about your pharmacy, answer any questions, and talk through whether the pilot is a good fit.</p>
+            <!-- Pilot benefits section -->
+            <table cellpadding="0" cellspacing="0" width="100%" style="margin:0 0 28px;background:#f8fafc;border-radius:10px;border:1px solid #e8edf3;">
+              <tr>
+                <td style="padding:22px 26px 18px;">
+                  <p style="margin:0 0 16px;font-size:14px;font-weight:700;color:#0f1623;letter-spacing:0.2px;">The founding pilot includes:</p>
+                  <table cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td style="padding:6px 0;font-size:14px;line-height:1.5;color:#1e293b;">
+                        <span style="color:#16a34a;font-weight:600;margin-right:8px;">&#10003;</span> Free pilot access
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px 0;font-size:14px;line-height:1.5;color:#1e293b;">
+                        <span style="color:#16a34a;font-weight:600;margin-right:8px;">&#10003;</span> Early access to new features
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px 0;font-size:14px;line-height:1.5;color:#1e293b;">
+                        <span style="color:#16a34a;font-weight:600;margin-right:8px;">&#10003;</span> Direct setup and support
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px 0;font-size:14px;line-height:1.5;color:#1e293b;">
+                        <span style="color:#16a34a;font-weight:600;margin-right:8px;">&#10003;</span> A chance to shape PharmaTrack around real pharmacy workflow
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+            <!-- Sign-off -->
+            <p style="margin:0 0 20px;font-size:15px;line-height:1.7;color:#1e293b;">Thanks again,</p>
+            <p style="margin:0 0 2px;font-size:15px;font-weight:600;color:#0f1623;">Brad</p>
+            <p style="margin:0 0 2px;font-size:13px;color:#64748b;">Founder &amp; Product Lead</p>
+            <p style="margin:0;font-size:13px;color:#64748b;font-weight:500;">Pharma<span style="color:#2563eb;">Track</span></p>
           </td>
         </tr>
+        <!-- Footer -->
         <tr>
-          <td style="padding:20px 40px;background:#f9fafb;border-top:1px solid #f0f0f0;">
-            <p style="margin:0;font-size:12px;color:#9ca3af;text-align:center;">You're receiving this because you submitted your details on the PharmaTrack pilot page.</p>
+          <td style="padding:22px 44px;background:#f8fafc;border-top:1px solid #eef1f5;">
+            <p style="margin:0;font-size:12px;color:#94a3b8;text-align:center;">You're receiving this because you submitted your details on the PharmaTrack pilot page.</p>
           </td>
         </tr>
       </table>
@@ -104,22 +152,34 @@ module.exports = async function handler(req, res) {
     const autoReplyText = [
       `Hi ${firstName},`,
       '',
-      'Thanks for your interest in becoming a PharmaTrack founding pilot pharmacy.',
+      'Thanks for your interest in joining the PharmaTrack founding pilot.',
       '',
-      "I've received your details and will be in touch soon to learn more about your pharmacy, answer any questions, and talk through the next steps.",
+      'PharmaTrack is being opened to a small group of community pharmacies that want clearer delivery operations, better customer communication, and stronger care-team updates without adding more admin.',
       '',
-      'Appreciated,',
+      "I've received your details and will come back to you personally to learn a bit more about your pharmacy, answer any questions, and talk through whether the pilot is a good fit.",
+      '',
+      'The founding pilot includes:',
+      '',
+      '- Free pilot access',
+      '- Early access to new features',
+      '- Direct setup and support',
+      '- A chance to shape PharmaTrack around real pharmacy workflow',
+      '',
+      'Thanks again,',
       '',
       'Brad',
       'Founder & Product Lead',
       'PharmaTrack',
+      '',
+      '---',
+      "You're receiving this because you submitted your details on the PharmaTrack pilot page.",
     ].join('\n');
 
     emails.push(
       resend.emails.send({
         from:    process.env.FROM_EMAIL,
         to:      clean.contact,
-        subject: 'Thanks for your interest in PharmaTrack',
+        subject: 'Thanks for your PharmaTrack founding pilot enquiry',
         html:    autoReplyHtml,
         text:    autoReplyText,
       })
